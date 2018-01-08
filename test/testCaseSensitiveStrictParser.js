@@ -18,7 +18,7 @@ describe("strict parser that is case insensitive",function(){
 
 describe("strict parser that is case insensitive",function(){
   it("should parse when specified keys are in lower case and actual is not",function(){
-    let kvParser=new StrictParser(["nAme"],true);
+    let kvParser=new StrictParser(["nAme"],false);
     // false indicates that case sensitive is false. By default it is true
     let expected=new Parsed();
     expected["NAME"]="jayanth";
