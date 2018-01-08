@@ -14,7 +14,6 @@ const contains=function(list,key,caseSensetive) {
 var StrictParseInfo=function(initialParsingFunction,validKeys,caseSensetive) {
   ParseInfo.call(this,initialParsingFunction);
   this.validKeys=validKeys;
-  console.log(caseSensetive);
   this.caseSensetive = caseSensetive;
 }
 
