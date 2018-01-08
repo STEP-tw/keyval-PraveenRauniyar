@@ -3,7 +3,9 @@ const ParseInfo=require("./parseInfo.js");
 const InvalidKeyError=require("./errors/invalidKeyError.js");
 
 const contains=function(list,key) {
+  key = key.toUpperCase();
   return list.find(function(validKey){
+    validKey = validKey.toUpperCase()
     return key==validKey;
   });
 }
