@@ -30,7 +30,6 @@ describe("parse basic key values",function(){
   it("parse when there are leading spaces before key",function(){
     let actual=kvParser.parse(" key=value");
     let expected = {'key':'value'};
-    console.log(kvParser.parse(" key=value"));
     assert.ownInclude({'key':'value'},kvParser.parse(" key=value"));
   });
 
@@ -198,7 +197,7 @@ describe("mixed values with both quotes and without",function(){
 });
 
 const errorChecker=function(key,pos,typeOfError) {
-    return function(err) {
+   return function(err) {
       if(err instanceof typeOfError && err.key==key && err.position==pos)
         return true;
       return false;
@@ -211,6 +210,7 @@ describe("error handling",function(){
   });
 
   it("throws error on missing value when value is unquoted",function(){
+    console.log(errorChecker("key",3,MissingValue));
     assert.throws(
       () => {
         kvParser.parse("key=")
@@ -246,12 +246,11 @@ describe("error handling",function(){
   });
 
   it("throws error on missing assignment operator",function(){
+    let error = errorChecker(undefined,4,MissingAssignmentOperatorError)
     assert.throws(
       () => {
         var p=kvParser.parse("key value");
-      },
-      errorChecker(undefined,4,MissingAssignmentOperatorError)
-    )
+      },error)
   });
 
   it("throws error on incomplete key value pair",function(){

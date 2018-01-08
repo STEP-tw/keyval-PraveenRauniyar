@@ -20,14 +20,14 @@ describe("strict parser",function(){
       () => {
         var p=kvParser.parse("age=23");
       },
-      invalidKeyErrorChecker("age",5))
+      invalidKeyErrorChecker("age",5));
   });
 
   it("should only parse keys that are specified for multiple keys",function(){
     let kvParser=new StrictParser(["name","age"]);
     let actual=kvParser.parse("name=john age=23");
     let expected={name:"john",age:"23"};
-    assert.strictEqual(expected,actual);
+    assert.ownInclude(expected,actual);
     assert.throws(
       () => {
         var p=kvParser.parse("color=blue");
